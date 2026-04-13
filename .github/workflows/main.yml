@@ -2,8 +2,8 @@ name: Weekly Agent Runs
 
 on:
   schedule:
-    - cron: '0 8 * * 1'  # Every Monday at 08:00 UTC
-  workflow_dispatch:       # Also allows manual trigger
+    - cron: '0 8 * * 1' # Every Monday at 08:00 UTC
+  workflow_dispatch: # Also allows manual trigger
 
 jobs:
   run-porsche-scout:
@@ -20,7 +20,8 @@ jobs:
           -d '{
             "agent": "${{ secrets.PORSCHE_SCOUT_AGENT_ID }}",
             "environment_id": "${{ secrets.ENVIRONMENT_ID }}",
-            "vault_ids": ["${{ secrets.VAULT_ID }}"]
+            "vault_ids": ["${{ secrets.VAULT_ID }}"],
+            "messages": [{"role": "user", "content": "run"}]
           }'
 
   run-cultural-events-scout:
@@ -37,5 +38,6 @@ jobs:
           -d '{
             "agent": "${{ secrets.CULTURAL_SCOUT_AGENT_ID }}",
             "environment_id": "${{ secrets.ENVIRONMENT_ID }}",
-            "vault_ids": ["${{ secrets.VAULT_ID }}"]
+            "vault_ids": ["${{ secrets.VAULT_ID }}"],
+            "messages": [{"role": "user", "content": "run"}]
           }'
